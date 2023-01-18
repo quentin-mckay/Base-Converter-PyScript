@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width,initial-scale=1" />
+
+		<script defer src="https://pyscript.net/latest/pyscript.js"></script>
+
+		<link rel="stylesheet" href="./main.css">
+		
+		<title>Base Converter</title>
+	</head>
+
+	<body>
+
+		<div class="container">
+			
+			<input type="text" id="input-number" value='' placeholder="input" py-input="convert()">
+		
+			<select id="input-base" py-input="convert()">
+				<option value="2">binary</option>
+				<option value="10" selected>decimal</option>
+				<option value="16">hex</option>
+			</select>
+
+			<div class="arrow-wrapper">
+				<img src="./arrow.png" class="arrow" alt="arrow">
+			</div>
+		
+			<select id="output-base" py-input="convert()">
+				<option value="2">binary</option>
+				<option value="10">decimal</option>
+				<option value="16" selected>hex</option>
+			</select>
+		
+		
+			<input type="text" id="output-number" placeholder="output">
+			
+			<p id="error"></p>
+		</div>
+
+
+		<py-script>
+			def decimal_to_binary(n):
+				return bin(n).replace("0b", "")
+
+			def decimal_to_hex(n):
+				return hex(n).replace("0x", "").upper()
+
+
+			def convert():
+				input_string = Element('input-number').element.value
+				input_base = Element('input-base').element.value
+				output_base = Element('output-base').element.value
+
+				input_base = int(input_base)
+
+				Element('error').write('')
+
+				output_number = ''
+
+				if input_string:
+					try:
+						decimal_number = int(input_string, input_base)
+
+						match output_base:
+							case '2':
+								output_number = decimal_to_binary(decimal_number)
+							case '10':
+								output_number = decimal_number
+							case '16':
+								output_number = decimal_to_hex(decimal_number)
+							case _:
+								output_number = ''
+					except Exception as e: 
+
+						Element('error').write(e)
+
+				Element('output-number').element.value = output_number
+		</py-script>
+
+	<!-- <script src="https://cdn.jsdelivr.net/npm/tw-elements/dist/js/index.min.js"></script> -->
+
+	</body>
+</html>
