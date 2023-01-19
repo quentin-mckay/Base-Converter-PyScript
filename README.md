@@ -1,5 +1,7 @@
 # Base Converter PyScript
 
-As-you-type converter to/from binary, decimal, and hexidecimal bases performed with Python IN THE BROWSER using [PyScript](https://pyscript.net/) :exploding_head:
+Convert to/from binary, decimal, and hexidecimal bases.
+
+Calculations done with Python. IN THE BROWSER. Using [PyScript](https://pyscript.net/). Yep :exploding_head:
 
 ![app screenshot](./images/app-screenshot.jpg)
